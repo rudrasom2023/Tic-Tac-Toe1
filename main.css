@@ -1,0 +1,250 @@
+/* style.css */
+:root {
+    --cell-size: 100px;
+    --primary-color: #00ff9d;
+    --secondary-color: #4a00e0;
+    --hover-color: #00ccff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.85),
+        rgba(74, 0, 224, 0.75)
+    ),
+    url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-color),
+                0 0 40px var(--secondary-color);
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.title {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.mode-selection {
+    margin-bottom: 2rem;
+}
+
+.mode-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+    background: var(--primary-color);
+    color: black;
+}
+
+.mode-btn:hover {
+    background: var(--hover-color);
+    border-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+.status {
+    color: white;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, var(--cell-size));
+    gap: 5px;
+    margin: 2rem auto;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 2px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cell:hover {
+    background: rgba(0, 255, 157, 0.1);
+}
+
+.restart-btn {
+    background: var(--primary-color);
+    color: black;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.restart-btn:hover {
+    background: var(--hover-color);
+    transform: scale(1.05);
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
+    :root {
+        --cell-size: 80px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .mode-btn {
+        padding: 8px 16px;
+        margin: 5px;
+        font-size: 0.9rem;
+    }
+
+    .status {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --cell-size: 60px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .mode-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Add animation for background */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 255, 157, 0.15),
+        rgba(74, 0, 224, 0.15),
+        rgba(0, 204, 255, 0.15)
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* Enhanced space animation effects */
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes meteorShower {
+    0% {
+        transform: translateX(100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(-250%) translateY(250%) rotate(45deg);
+    }
+}
+
+/* Add these new style blocks at the end of your file */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: starTwinkle 3s infinite;
+}
+
+.meteor {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+    animation: meteorShower 6s linear infinite;
+}
+
+/* Add nebula effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(74, 0, 224, 0.3), transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(0, 255, 157, 0.2), transparent 40%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    animation: gradientAnimation 30s ease infinite alternate;
+}
